@@ -4,9 +4,9 @@ import { PropTypes } from "prop-types";
 class AddTodo extends Component {
   constructor() {
     super();
-    this.state = { 
+    this.state = {
       value: ""
-   };
+    };
     this.addTodo = this.addTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.resetInput = this.resetInput.bind(this);
@@ -15,17 +15,16 @@ class AddTodo extends Component {
   addTodo() {
     this.props.handleAddTodo(this.state.value);
     this.resetInput();
-
   }
 
   handleChangeButton = event => {
     this.setState({
       name: event.target.value
-    })
-  }
+    });
+  };
   resetInput = () => {
-    this.setState({value: ""});
-  }
+    this.setState({ value: "" });
+  };
 
   handleChange(newValue) {
     this.setState({ value: newValue });
@@ -45,13 +44,25 @@ class AddTodo extends Component {
         />
 
         <div class="input-group-btn">
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            onClick={this.addTodo}
-          >
-            Add
-          </button>
+          {this.state.value == "" && (
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              disabled
+              onClick={this.addTodo}
+            >
+              Add
+            </button>
+          )}
+          {this.state.value != "" && (
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              onClick={this.addTodo}
+            >
+              Add
+            </button>
+          )}
         </div>
       </div>
     );
