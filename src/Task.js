@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import "./Todo.css";
 
-const Todo = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
+const Task = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
   <li class="list-group-item justify-content-around">
     <div>
       <input
@@ -26,7 +26,7 @@ const Todo = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
   </li>
 );
 
-Todo.propTypes = {
+Task.propTypes = {
   title: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   done: PropTypes.bool,
@@ -34,4 +34,4 @@ Todo.propTypes = {
   handleDeleteTodo: PropTypes.func.isRequired
 };
 
-export default Todo;
+export default Task;

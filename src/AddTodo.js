@@ -17,11 +17,6 @@ class AddTodo extends Component {
     this.resetInput();
   }
 
-  handleChangeButton = event => {
-    this.setState({
-      name: event.target.value
-    });
-  };
   resetInput = () => {
     this.setState({ value: "" });
   };
@@ -44,7 +39,7 @@ class AddTodo extends Component {
         />
 
         <div class="input-group-btn">
-          {this.state.value == "" && (
+          {this.state.value === "" && (
             <button
               class="btn btn-outline-secondary"
               type="button"
@@ -54,7 +49,7 @@ class AddTodo extends Component {
               Add
             </button>
           )}
-          {this.state.value != "" && (
+          {this.state.value !== "" && (
             <button
               class="btn btn-outline-secondary"
               type="button"

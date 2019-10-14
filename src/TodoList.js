@@ -1,11 +1,11 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import Todo from './Todo';
+import Task from './Task';
 
 const TodoList = ({todos, handleToggleTodo, handleDeleteTodo}) => 
 <ul className="list-group">
-  {todos.map((todo) => <Todo
+  {todos.map((todo) => <Task
     key={todo.id}
     {...todo}
     handleToggleTodo={handleToggleTodo}
