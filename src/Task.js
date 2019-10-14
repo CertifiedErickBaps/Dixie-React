@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import "./Todo.css";
 
 const Task = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
-  <li class="list-group-item justify-content-around">
+  <li className="list-group-item justify-content-around">
     <div>
       <input
         type="checkbox"
@@ -17,7 +17,7 @@ const Task = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
     <div>
       <button
         type="button"
-        class="btn btn-danger float-right"
+        className="btn btn-danger float-right"
         onClick={() => handleDeleteTodo(id)}
       >
         Delete

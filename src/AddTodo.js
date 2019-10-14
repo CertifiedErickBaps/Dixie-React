@@ -27,10 +27,10 @@ class AddTodo extends Component {
 
   render() {
     return (
-      <div class="input-group mb-3">
+      <div className="input-group mb-3">
         <input
           type="text"
-          class="form-control"
+          className="form-control"
           value={this.state.value}
           onChange={e => this.handleChange(e.target.value)}
           placeholder="Add a task..."
@@ -38,10 +38,10 @@ class AddTodo extends Component {
           aria-describedby="basic-addon2"
         />
 
-        <div class="input-group-btn">
+        <div className="input-group-btn">
           {this.state.value === "" && (
             <button
-              class="btn btn-outline-secondary"
+              className="btn btn-outline-secondary"
               type="button"
               disabled
               onClick={this.addTodo}
@@ -51,7 +51,7 @@ class AddTodo extends Component {
           )}
           {this.state.value !== "" && (
             <button
-              class="btn btn-outline-secondary"
+              className="btn btn-outline-secondary"
               type="button"
               onClick={this.addTodo}
             >
