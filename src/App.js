@@ -11,6 +11,7 @@ class App extends Component {
     super();
     this.state = { todos: [] };
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleSearchTodo = this.handleSearchTodo.bind(this);
     this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
     this.handleToggleTodo = this.handleToggleTodo.bind(this);
   }
@@ -20,6 +21,15 @@ class App extends Component {
       .toArray()
       .then(todos => {
         this.setState({ todos });
+      });
+  }
+
+  handleSearchTodo(id) {
+    const newValue = parseInt(id, 10);
+    db.table("todos")
+      .get(newValue)
+      .then(function(firstFriend) {
+        console.log("Task with id 1: " + firstFriend.title);
       });
   }
 
@@ -67,7 +77,10 @@ class App extends Component {
         <div className="container">
           <div className="Card">
             <div className="card-header">
-              <AddTodo handleAddTodo={this.handleAddTodo} />
+              <AddTodo
+                handleAddTodo={this.handleAddTodo}
+                handleSearchTodo={this.handleSearchTodo}
+              />
             </div>
 
             <TodoList

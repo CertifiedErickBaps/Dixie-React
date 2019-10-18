@@ -5,9 +5,11 @@ class AddTodo extends Component {
   constructor() {
     super();
     this.state = {
-      value: ""
+      value: "",
+      valueSearch: ""
     };
     this.addTodo = this.addTodo.bind(this);
+    this.searchTodo = this.searchTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.resetInput = this.resetInput.bind(this);
   }
@@ -17,55 +19,99 @@ class AddTodo extends Component {
     this.resetInput();
   }
 
+  searchTodo() {
+    this.props.handleSearchTodo(this.state.valueSearch);
+    this.resetInput();
+  }
+
   resetInput = () => {
-    this.setState({ value: "" });
+    this.setState({
+      value: "",
+      valueSearch: ""
+    });
   };
 
-  handleChange(newValue) {
-    this.setState({ value: newValue });
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
   }
 
   render() {
     return (
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          value={this.state.value}
-          onChange={e => this.handleChange(e.target.value)}
-          placeholder="Add a task..."
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-        />
+      <>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            value={this.state.valueSearch}
+            name="valueSearch"
+            onChange={e => this.handleChange(e)}
+            placeholder="Search a task by id..."
+            aria-describedby="basic-addon2"
+          />
 
-        <div className="input-group-btn">
-          {this.state.value === "" && (
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              disabled
-              onClick={this.addTodo}
-            >
-              Add
-            </button>
-          )}
-          {this.state.value !== "" && (
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={this.addTodo}
-            >
-              Add
-            </button>
-          )}
+          <div className="input-group-btn">
+            {this.state.valueSearch === "" && (
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                disabled
+              >
+                Search
+              </button>
+            )}
+            {this.state.valueSearch !== "" && (
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={this.searchTodo}
+              >
+                Search
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            name="value"
+            value={this.state.value}
+            onChange={e => this.handleChange(e)}
+            placeholder="Add a task..."
+            aria-describedby="basic-addon2"
+          />
+
+          <div className="input-group-btn">
+            {this.state.value === "" && (
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                disabled
+              >
+                Add
+              </button>
+            )}
+            {this.state.value !== "" && (
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={this.addTodo}
+              >
+                Add
+              </button>
+            )}
+          </div>
+        </div>
+      </>
     );
   }
 }
 
 AddTodo.propTypes = {
-  handleAddTodo: PropTypes.func.isRequired
+  handleAddTodo: PropTypes.func.isRequired,
+  handleSearchTodo: PropTypes.func.isRequired
 };
 
 export default AddTodo;
