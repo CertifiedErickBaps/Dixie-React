@@ -20,7 +20,7 @@ const Task = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
         className="btn btn-danger float-right"
         onClick={() => handleDeleteTodo(id)}
       >
-        Delete
+        Deletes
       </button>
     </div>
   </li>
