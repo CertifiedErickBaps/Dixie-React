@@ -12,7 +12,7 @@ const Task = ({ title, id, done, handleToggleTodo, handleDeleteTodo }) => (
       />
     </div>
     <div>
-      <span>{title}</span>
+      <span>ID-{id} &nbsp; {title}</span>
     </div>
     <div>
       <button

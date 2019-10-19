@@ -3,9 +3,9 @@ import {PropTypes} from 'prop-types';
 
 import Task from './Task';
 
-const TodoList = ({todos, handleToggleTodo, handleDeleteTodo}) =>
+const TodoSearch = ({search, handleToggleTodo, handleDeleteTodo}) =>
     <ul className="list-group">
-        {todos.map((todo) => <Task
+        {search.map((todo) => <Task
             key={todo.id}
             {...todo}
             handleToggleTodo={handleToggleTodo}
@@ -13,8 +13,8 @@ const TodoList = ({todos, handleToggleTodo, handleDeleteTodo}) =>
         />)}
     </ul>;
 
-TodoList.propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.shape({
+TodoSearch.propTypes = {
+    search: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
         done: PropTypes.bool,
@@ -23,4 +23,4 @@ TodoList.propTypes = {
     handleDeleteTodo: PropTypes.func.isRequired
 };
 
-export default TodoList;
+export default TodoSearch;

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./bootstrap.css";
-
+import "./index.css";
 import db from "./db";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
+import TodoSearch from "./TodoSearch";
+import img from "./img/idea.png";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { todos: [] };
+    this.state = {
+      todos: [],
+      task: []
+    };
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearchTodo = this.handleSearchTodo.bind(this);
     this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
@@ -28,8 +33,11 @@ class App extends Component {
     const newValue = parseInt(id, 10);
     db.table("todos")
       .get(newValue)
-      .then(function(firstFriend) {
-        console.log("Task with id 1: " + firstFriend.title);
+      .then(() => {
+        const newList = [
+          ...this.state.todos.filter(todo => todo.id === newValue)
+        ];
+        this.setState({ task: newList });
       });
   }
 
@@ -69,6 +77,9 @@ class App extends Component {
   }
 
   render() {
+    console.log("Tasks: ", this.state.task);
+    console.log("Todos:", this.state.todos);
+    console.log(this.state.todos.length === 0);
     return (
       <div className="App">
         <div className="App-header">
@@ -76,18 +87,32 @@ class App extends Component {
         </div>
         <div className="container">
           <div className="Card">
+            <TodoSearch
+              search={this.state.task}
+              handleToggleTodo={this.handleToggleTodo}
+              handleDeleteTodo={this.handleDeleteTodo}
+            />
+          </div>
+
+          <div className="Card">
             <div className="card-header">
               <AddTodo
                 handleAddTodo={this.handleAddTodo}
                 handleSearchTodo={this.handleSearchTodo}
               />
             </div>
-
-            <TodoList
-              todos={this.state.todos}
-              handleToggleTodo={this.handleToggleTodo}
-              handleDeleteTodo={this.handleDeleteTodo}
-            />
+            {this.state.todos.length !== 0 && (
+              <TodoList
+                todos={this.state.todos}
+                handleToggleTodo={this.handleToggleTodo}
+                handleDeleteTodo={this.handleDeleteTodo}
+              />
+            )}
+            {this.state.todos.length === 0 && (
+              <div className="container">
+                <img className="responsive-img" src={img} />
+              </div>
+            )}
           </div>
         </div>
       </div>

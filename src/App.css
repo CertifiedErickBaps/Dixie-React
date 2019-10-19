@@ -18,3 +18,10 @@
 .TitleText {
   vertical-align: center;
 }
+
+.responsive-img {
+  padding: 20px;
+  margin-top: 50px;
+  width: 400px;
+  height: auto;
+}
