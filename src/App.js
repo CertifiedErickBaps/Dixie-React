@@ -77,9 +77,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("Tasks: ", this.state.task);
-    console.log("Todos:", this.state.todos);
-    console.log(this.state.todos.length === 0);
     return (
       <div className="App">
         <div className="App-header">

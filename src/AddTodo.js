@@ -42,7 +42,7 @@ class AddTodo extends Component {
             <>
                 <div className="input-group mb-3">
                     <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         value={this.state.valueSearch}
                         name="valueSearch"
